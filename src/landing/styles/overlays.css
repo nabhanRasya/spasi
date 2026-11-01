@@ -1,0 +1,139 @@
+/* opening sequence: a widescreen slit, a counter, then the curtains part */
+.cur {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 30svh;
+  background: var(--bg);
+  z-index: 60;
+  pointer-events: none;
+  animation: cur 1.5s 1.5s var(--ease-io) forwards;
+}
+.cur.t {
+  top: 0;
+  transform-origin: top;
+}
+.cur.b {
+  bottom: 0;
+  transform-origin: bottom;
+}
+.count {
+  position: fixed;
+  z-index: 61;
+  left: var(--gut);
+  bottom: calc(var(--s3) + env(safe-area-inset-bottom, 0px));
+  width: min(40vw, 220px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+  pointer-events: none;
+  animation: fade-out 0.5s 1.4s forwards;
+}
+.count i {
+  display: block;
+  height: 1px;
+  background: var(--ink);
+  transform-origin: left;
+  transform: scaleX(var(--p, 0));
+}
+
+.grain {
+  position: fixed;
+  inset: -10%;
+  z-index: 55;
+  pointer-events: none;
+  opacity: var(--grain);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1.4 -.2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(5) infinite;
+}
+.progress {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--ink);
+  opacity: 0.55;
+  transform-origin: top;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.reticle {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.reticle.on {
+  opacity: 1;
+}
+.reticle b {
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 18px;
+  height: 1px;
+  background: var(--ink);
+  opacity: 0.7;
+}
+.reticle b::after {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: -8px;
+  width: 1px;
+  height: 17px;
+  background: var(--ink);
+}
+.reticle span {
+  position: absolute;
+  left: 14px;
+  top: 10px;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--mute);
+  white-space: nowrap;
+}
+@media (pointer: coarse) {
+  .reticle {
+    display: none;
+  }
+}
+
+.gridov {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+.gl {
+  position: absolute;
+  background: var(--ink);
+  opacity: 0.2;
+}
+.gl.v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+.gl.h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+.gl.phi.v {
+  background: repeating-linear-gradient(to bottom, var(--ink) 0 6px, transparent 6px 12px);
+  opacity: 0.45;
+}
+.gl.phi.h {
+  background: repeating-linear-gradient(to right, var(--ink) 0 6px, transparent 6px 12px);
+  opacity: 0.45;
+}

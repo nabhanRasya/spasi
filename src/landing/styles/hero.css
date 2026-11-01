@@ -1,0 +1,141 @@
+.hero {
+  position: relative;
+  height: max(100svh, 620px);
+  overflow: hidden;
+  isolation: isolate;
+}
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+.field canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  transform-origin: 61.8% 38.2%;
+}
+.hero .field {
+  opacity: 0;
+  animation: fade 1.2s 0.1s var(--ease) forwards;
+}
+
+.nav {
+  position: absolute;
+  z-index: 3;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--s3) var(--gut);
+  animation: fade 1.2s 2.5s both;
+}
+.nav .home {
+  display: block;
+  width: clamp(72px, 7vw, 112px);
+}
+.nav ul {
+  display: flex;
+  gap: var(--s3);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.nav a.l {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+}
+
+/* invisible sizer: the moth is drawn in the canvas around this box's centre */
+.mark-wrap {
+  position: absolute;
+  z-index: 2;
+  left: 61.8%;
+  top: 38.2%;
+  width: clamp(240px, 36vw, 660px);
+  aspect-ratio: 3 / 2;
+  margin: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hero-copy {
+  position: absolute;
+  z-index: 3;
+  left: var(--gut);
+  bottom: var(--s5);
+  width: min(38.2%, 31rem);
+}
+.lead {
+  margin: var(--s2) 0;
+  font-weight: 300;
+  font-size: var(--t-lg);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.sub {
+  margin: 0;
+  color: var(--mute);
+  max-width: 34ch;
+}
+.hero-meta {
+  position: absolute;
+  z-index: 3;
+  right: var(--gut);
+  bottom: var(--s5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--s2);
+  animation: fade 1.2s 3s both;
+}
+.drip {
+  display: block;
+  width: 1px;
+  height: var(--s5);
+  background: var(--ink);
+  transform-origin: top;
+  animation: drip 2.8s var(--ease-io) infinite;
+}
+.rail {
+  position: absolute;
+  z-index: 3;
+  right: var(--gut);
+  top: 38.2%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  animation: fade 1.2s 2.8s both;
+}
+
+@media (max-width: 760px) {
+  .mark-wrap {
+    left: 50%;
+    top: 31%;
+    width: min(72vw, 360px);
+  }
+  .hero-copy {
+    width: auto;
+    right: var(--gut);
+    bottom: var(--s4);
+  }
+  .hero-meta,
+  .rail {
+    display: none;
+  }
+  .nav ul {
+    gap: var(--s2);
+  }
+  .nav li.opt {
+    display: none;
+  }
+}

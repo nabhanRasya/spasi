@@ -1,0 +1,226 @@
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, var(--s3), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes wordUp {
+  from {
+    transform: translateY(112%);
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes cur {
+  to {
+    transform: scaleY(0);
+    visibility: hidden;
+  }
+}
+@keyframes grain {
+  0% {
+    transform: translate(0, 0);
+  }
+  20% {
+    transform: translate(-2%, 1.5%);
+  }
+  40% {
+    transform: translate(1.5%, -3%);
+  }
+  60% {
+    transform: translate(-3%, -1.5%);
+  }
+  80% {
+    transform: translate(2.5%, 2%);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes drip {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  51% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+
+/* load sequence (hero) */
+.fx-up {
+  animation: up 1.3s var(--ease) both;
+  animation-delay: calc(var(--base, 1.8s) + var(--i, 0) * 0.12s);
+}
+.sw-load .wi {
+  animation: wordUp 1.2s var(--ease) both;
+  animation-delay: calc(var(--base, 2s) + var(--i) * 0.08s);
+}
+
+/* scroll-driven sequences (Chromium and Safari TP; everything simply stays visible elsewhere) */
+@keyframes rv {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--dx, 0), var(--s4), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes inkIn {
+  from {
+    color: var(--line2);
+  }
+  to {
+    color: var(--ink);
+  }
+}
+@keyframes prog {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes heroOut {
+  to {
+    transform: scale(1.14);
+    opacity: 0.1;
+  }
+}
+@keyframes copyOut {
+  to {
+    transform: translate3d(0, -9vh, 0);
+    opacity: 0;
+  }
+}
+@keyframes par {
+  from {
+    transform: translateY(var(--par, 0));
+  }
+  to {
+    transform: translateY(calc(var(--par, 0) * -1));
+  }
+}
+@keyframes footIn {
+  from {
+    opacity: 0.2;
+    transform: translateY(14%) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .rv {
+      animation: rv linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 55%;
+    }
+    .stair .rv {
+      --dx: calc(var(--s3) * -1);
+    }
+
+    .sw-scroll .wi {
+      animation: wordUp linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--i) * 3%) entry calc(55% + var(--i) * 3%);
+    }
+    .stair .w {
+      animation: inkIn linear both;
+      animation-timeline: view();
+      animation-range: entry calc(30% + var(--i) * 3%) cover calc(42% + var(--i) * 3%);
+    }
+
+    .cv {
+      animation: par linear both;
+      animation-timeline: view();
+      animation-range: cover;
+    }
+
+    .progress {
+      display: block;
+      animation: prog linear both;
+      animation-timeline: scroll(root);
+    }
+    .hero .field canvas {
+      animation: heroOut linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+    .hero-copy {
+      animation: copyOut linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 60svh;
+    }
+    .foot-mark {
+      animation: footIn linear both;
+      animation-timeline: scroll(root);
+      animation-range: calc(100% - var(--foot-h)) 100%;
+    }
+  }
+}
+
+/* theme switch: the new theme spreads from the click (see lib/theme.js) */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero .field {
+    opacity: 1;
+  }
+  .grain,
+  .reticle {
+    display: none;
+  }
+}

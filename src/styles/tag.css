@@ -1,0 +1,72 @@
+/* ---------- halaman /tag ---------- */
+.tag-find {
+  display: block;
+  padding-block: var(--s2);
+  border-bottom: 1px solid var(--line);
+}
+.tag-find input {
+  width: 100%;
+  max-width: 28rem;
+  min-height: 44px;
+  padding: 0 var(--s1);
+  font-family: var(--f-mono);
+  font-size: var(--t-sm);
+  color: var(--ink);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--line2);
+  outline: 0;
+  border-radius: 0;
+}
+.tag-find input:focus-visible {
+  border-bottom-color: var(--ink);
+}
+.tag-group {
+  padding-block: var(--s3) 0;
+}
+.tag-group h2 {
+  margin: 0 0 var(--s2);
+  color: var(--mute);
+  font-weight: 400;
+}
+.tag-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 14rem), 1fr));
+  gap: 0 var(--s3);
+}
+.tag-item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-block: 0.85em;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.tag-item:hover .tag-name,
+.tag-item:focus-visible .tag-name {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.tag-name {
+  font-family: var(--f-display);
+  font-size: var(--t-md);
+  overflow-wrap: anywhere;
+}
+.tag-count {
+  flex: none;
+  color: var(--mute);
+  font-size: var(--t-xs);
+}
+.tag-empty {
+  margin: 0;
+  color: var(--mute);
+}
+.tag-back {
+  margin: var(--s4) 0 0;
+}

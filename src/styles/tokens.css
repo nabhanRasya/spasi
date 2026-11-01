@@ -1,0 +1,80 @@
+/* Token desain — diambil langsung dari landing page Spasi (tokens.css).
+   Ditambah beberapa token khusus membaca (--read, --measure, --rs). */
+:root {
+  --bg: #0a0a0a;
+  --ink: #ececec;
+  --mute: #8c8c8c;
+  --line: #262626;
+  --line2: #4d4d4d;
+  --grain: 0.04;
+  --lazuli: #4d8bd1;
+  --read: #dadada; /* teks bacaan: sedikit lebih lembut dari --ink agar tak silau di mode gelap */
+  --warn: #e7a38b; /* satu-satunya aksen: hanya untuk pesan galat */
+  --hover: rgba(255, 255, 255, 0.06);
+
+  --u: clamp(8px, calc(0.62vw + 5.5px), 20px);
+  --s1: var(--u);
+  --s2: calc(var(--u) * 1.618);
+  --s3: calc(var(--u) * 2.618);
+  --s4: calc(var(--u) * 4.236);
+  --s5: calc(var(--u) * 6.854);
+  --s6: calc(var(--u) * 11.09);
+  --gut: var(--s3);
+
+  --f-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --f-mono: 'DM Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --t-xs: 0.72rem;
+  --t-sm: 0.875rem;
+  --t-md: 1.0625rem;
+  --t-lg: clamp(1.45rem, 2.3vw, 2.3rem);
+  --t-xl: clamp(2.2rem, 5.2vw, 5.8rem);
+  --t-xxl: clamp(2.7rem, 7.4vw, 8.4rem);
+
+  /* membaca */
+  --rs: 1; /* skala ukuran teks (diatur pembaca) */
+  --t-read: calc(clamp(1.1875rem, 1.06rem + 0.42vw, 1.3125rem) * var(--rs));
+  --measure: 56ch;
+  --lh-read: 1.72;
+
+  --ease: cubic-bezier(0.22, 0.8, 0.2, 1);
+  --ease-io: cubic-bezier(0.7, 0, 0.2, 1);
+  --foot-h: clamp(240px, 40svh, 440px);
+  --top-h: 64px;
+
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: #f5f5f5;
+    --ink: #0b0b0b;
+    --mute: #666666;
+    --line: #dcdcdc;
+    --line2: #b0b0b0;
+    --grain: 0.06;
+    --lazuli: #26619c;
+    --read: #1a1a1a;
+    --warn: #a8432a;
+    --hover: rgba(0, 0, 0, 0.05);
+    color-scheme: light;
+  }
+}
+:root[data-theme='light'] {
+  --bg: #f5f5f5;
+  --ink: #0b0b0b;
+  --mute: #666666;
+  --line: #dcdcdc;
+  --line2: #b0b0b0;
+  --grain: 0.06;
+  --lazuli: #26619c;
+  --read: #1a1a1a;
+  --warn: #a8432a;
+  --hover: rgba(0, 0, 0, 0.05);
+  color-scheme: light;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --foot-h: clamp(220px, 34svh, 360px);
+    --top-h: 56px;
+  }
+}

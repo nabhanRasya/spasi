@@ -1,0 +1,438 @@
+/* Beranda: tampilan lebih tenang — satu kolom bacaan, satu lapis informasi per baris.
+   Hanya dimuat di index.html; halaman lain tidak terpengaruh. */
+.home {
+  --col: 58rem;
+}
+.home .col {
+  max-width: calc(var(--col) + var(--gut) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+.home .row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 var(--s3);
+}
+
+/* ikon: kelas .ic ada di base.css */
+.home .cta span {
+  display: inline-flex;
+  align-items: center;
+}
+.home .find-ic {
+  color: var(--mute);
+  width: 16px;
+  height: 16px;
+}
+.home .find .clr {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.home .find.has .clr {
+  display: inline-flex;
+}
+.meta .sv {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  vertical-align: baseline;
+}
+.meta .sv .ic {
+  width: 1em;
+  height: 1em;
+  vertical-align: 0;
+}
+
+/* header & footer sejajar dengan kolom konten */
+.home .top,
+.home .foot {
+  padding-inline: max(var(--gut), calc((100vw - var(--col)) / 2));
+}
+
+/* pembuka */
+.h-hero {
+  padding-block: var(--s4) var(--s3);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+.h-copy {
+  min-width: 0;
+  flex: 1;
+}
+/* hiasan ASCII: kecil, diam, hanya dekorasi */
+.ascii {
+  margin: 0;
+  flex: none;
+  width: 46ch;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  line-height: 1.05;
+  letter-spacing: 0;
+  white-space: pre;
+  color: var(--lazuli);
+  opacity: 0.95;
+  user-select: none;
+  cursor: pointer;
+  transition: opacity 0.4s;
+}
+.ascii:hover {
+  opacity: 1;
+}
+.h-hero h1 {
+  margin: 0 0 var(--s2);
+  font-weight: 300;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.h-lede {
+  margin: 0;
+  max-width: 40ch;
+  color: var(--mute);
+  line-height: 1.6;
+}
+
+/* topik + cari (tidak menempel, tanpa blur) */
+.h-tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-block: var(--s1) var(--s2);
+}
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  min-width: 0;
+}
+.chip {
+  min-height: 36px;
+  padding: 0 12px;
+  font-family: var(--f-mono);
+  font-size: var(--t-xs);
+  letter-spacing: 0.06em;
+  color: var(--mute);
+  background: none;
+  border: 0;
+  border-radius: 99px;
+  cursor: pointer;
+  transition:
+    color 0.25s,
+    background 0.25s;
+}
+.chip:hover,
+.chip:focus-visible {
+  color: var(--ink);
+}
+.chip[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--bg);
+}
+/* tautan "lainnya" di akhir slider tag → halaman /tag */
+.chip-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  text-decoration: none;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--line2);
+}
+.chip-more:hover,
+.chip-more:focus-visible {
+  background: var(--ink);
+  color: var(--bg);
+}
+.home .find {
+  flex: 0 1 200px;
+  min-width: 160px;
+  padding-inline: 14px;
+  gap: 8px;
+  border: 1px solid var(--line2);
+  border-bottom-width: 1px;
+  border-radius: 99px;
+  transition: border-color 0.3s;
+}
+.home .find input {
+  height: 38px;
+}
+.home .find:focus-within {
+  border-color: var(--ink);
+}
+
+/* pilihan minggu ini */
+.feat {
+  padding-block: var(--s3) var(--s2);
+  border-top: 1px solid var(--line);
+}
+.feat a {
+  display: block;
+}
+.feat .kicker {
+  margin-bottom: var(--s1);
+}
+.feat h2 {
+  margin: 0 0 var(--s1);
+  font-weight: 400;
+  font-size: clamp(1.7rem, 1.3rem + 1.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.feat .ex {
+  margin: 0 0 var(--s2);
+  max-width: 56ch;
+  color: var(--read);
+  opacity: 0.8;
+  font-size: var(--t-md);
+  line-height: 1.65;
+}
+.feat a:hover h2,
+.feat a:focus-visible h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+
+/* daftar */
+.count {
+  padding-block: var(--s2) var(--s1);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.item {
+  border-top: 1px solid var(--line);
+}
+.item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+.item a {
+  display: block;
+  padding-block: var(--s3);
+}
+.item h2 {
+  margin: 0 0 var(--s1);
+  font-weight: 400;
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.item .ex {
+  margin: 0 0 var(--s1);
+  max-width: 60ch;
+  color: var(--mute);
+  font-size: var(--t-md);
+  line-height: 1.65;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.item a:hover h2,
+.item a:focus-visible h2 {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+.item a:focus-visible {
+  outline-offset: 2px;
+}
+.item a:active h2,
+.feat a:active h2 {
+  opacity: 0.7;
+}
+.meta {
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+.meta .tg {
+  color: var(--ink);
+}
+
+/* kosong */
+.home .empty {
+  padding: var(--s4) 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* ajakan menulis: satu saja, di akhir */
+.h-write {
+  padding-block: var(--s5) var(--s5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s1);
+}
+.h-prompt {
+  margin: var(--s1) 0 var(--s1);
+  max-width: 28ch;
+  font-weight: 300;
+  font-size: clamp(1.35rem, 1.1rem + 1vw, 1.9rem);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+/* footer biasa: ringkas, tanpa logo besar yang terungkap */
+.home .page {
+  margin-bottom: 0;
+  min-height: 0;
+}
+.home .foot {
+  position: static;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding-block: var(--s3);
+}
+.home .foot-l {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+.home .foot-r {
+  align-items: center;
+}
+.home .foot-mark {
+  width: 64px;
+}
+
+@media (max-width: 760px) {
+  .ascii {
+    display: none;
+  }
+  .home .top,
+  .home .foot {
+    padding-inline: var(--gut);
+  }
+  .h-hero {
+    padding-block: var(--s3) var(--s2);
+  }
+  .h-tools {
+    flex-direction: column-reverse;
+    align-items: stretch;
+    gap: var(--s1);
+    padding-bottom: var(--s1);
+  }
+  .chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin-inline: calc(var(--gut) * -1);
+    padding-inline: var(--gut);
+    -webkit-mask: linear-gradient(90deg, #000 calc(100% - var(--gut)), transparent);
+    mask: linear-gradient(90deg, #000 calc(100% - var(--gut)), transparent);
+  }
+  .chips::-webkit-scrollbar {
+    display: none;
+  }
+  .chip {
+    flex: none;
+    min-height: 40px;
+  }
+  .home .find {
+    flex: none;
+    min-width: 0;
+    width: auto;
+  }
+  .home .find input {
+    height: 42px;
+  }
+  .feat {
+    padding-block: var(--s3) var(--s2);
+  }
+  .item a {
+    padding-block: var(--s2);
+  }
+}
+
+.more-wrap {
+  padding-block: var(--s3) 0;
+}
+.count .tgl {
+  margin-left: 0.4em;
+}
+
+/* panduan awal akun baru */
+.welcome {
+  margin-block: var(--s1) var(--s3);
+  padding: var(--s3);
+  border: 1px solid var(--line2);
+  background: var(--hover);
+}
+.welcome[hidden] {
+  display: none;
+}
+.w-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s2);
+}
+.w-head h2 {
+  margin: 0;
+  font-weight: 300;
+  font-size: var(--t-lg);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.w-head .tgl {
+  flex: none;
+  min-width: 44px;
+  min-height: 44px;
+  display: grid;
+  place-items: center;
+  margin: -10px -10px 0 0;
+}
+.welcome > .mono {
+  margin: 6px 0 var(--s2);
+}
+.w-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.w-steps li + li {
+  border-top: 1px solid var(--line);
+}
+.w-steps a {
+  display: flex;
+  align-items: center;
+  gap: var(--s2);
+  min-height: 48px;
+  font-size: var(--t-md);
+}
+.w-steps a:hover span,
+.w-steps a:focus-visible span {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+}
+.w-steps .ic {
+  width: 22px;
+  height: 22px;
+  stroke-width: 1.5;
+  color: var(--mute);
+}
+.w-steps .done .ic {
+  color: var(--ink);
+}
+.w-steps .done span {
+  color: var(--mute);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}

@@ -1,0 +1,54 @@
+.foot {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: var(--foot-h);
+  z-index: 0;
+  display: grid;
+  grid-template-columns: 38.2fr 61.8fr;
+  column-gap: var(--s3);
+  padding: var(--s3) var(--gut);
+  padding-bottom: calc(var(--s3) + env(safe-area-inset-bottom, 0px));
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+}
+.foot > * {
+  min-width: 0;
+}
+.foot-l {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.foot-tg {
+  display: flex;
+  gap: var(--s3);
+}
+.foot-r {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+.foot-mark {
+  width: min(100%, calc(var(--foot-h) * 1.9));
+}
+
+@media (max-width: 760px) {
+  :root {
+    --foot-h: clamp(280px, 46svh, 460px);
+  }
+  .foot {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    row-gap: var(--s2);
+  }
+  .foot-l {
+    flex-direction: row;
+    align-items: center;
+  }
+  .foot-r {
+    align-items: center;
+    justify-content: center;
+  }
+}

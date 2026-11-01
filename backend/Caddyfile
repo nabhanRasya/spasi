@@ -1,0 +1,37 @@
+# Satu domain: Caddy menyajikan dist/ dan meneruskan sisanya ke PocketBase (127.0.0.1:8090).
+spasi.id {
+	encode zstd gzip
+
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		Content-Security-Policy "default-src 'self'; script-src 'self' 'sha256-1nFnEVJX+NyRLWKGfOReOh9TYCnNah/nzk6vWt1LHGk='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob:; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'"
+		# Bila masih memakai Puter.js untuk gambar AI: tambahkan https://js.puter.com ke script-src dan https://api.puter.com ke connect-src.
+		# Hash di atas = skrip tema inline di index.html; hitung ulang bila skrip itu diubah.
+	}
+
+	# panel admin hanya dari IP Anda
+	@admin path /_/*
+	handle @admin {
+		@denied not remote_ip 203.0.113.10
+		respond @denied 403
+		reverse_proxy 127.0.0.1:8090
+	}
+
+	# API, berkas, realtime, sitemap, feed, dan halaman tulisan (meta untuk crawler)
+	@pb path /api/* /sitemap.xml /feed.xml /tulisan/*
+	handle @pb {
+		reverse_proxy 127.0.0.1:8090
+	}
+
+	# halaman privat: jangan diindeks (melengkapi useNoIndex di klien)
+	@private path /akun /tulis /masuk /daftar /tersimpan
+	header @private X-Robots-Tag "noindex, nofollow"
+
+	handle {
+		root * /srv/spasi/dist
+		try_files {path} /index.html
+		file_server
+	}
+}

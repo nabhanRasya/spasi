@@ -1,0 +1,125 @@
+/* Halaman sekunder (akun, tentang, 404): satu kolom, footer ringkas. */
+.compact {
+  --cw: 58rem;
+} /* sama dengan beranda */
+.compact .page {
+  margin-bottom: 0;
+  min-height: 0;
+}
+.compact .top,
+.compact .foot {
+  padding-inline: max(var(--gut), calc((100vw - var(--cw)) / 2));
+}
+.compact .foot {
+  position: static;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding-block: var(--s3);
+}
+.compact .foot-l {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--s3);
+  flex-wrap: wrap;
+}
+.compact .foot-r {
+  align-items: center;
+}
+.compact .foot-mark {
+  width: 64px;
+}
+.compact .col {
+  max-width: calc(var(--cw) + var(--gut) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gut);
+}
+@media (max-width: 760px) {
+  .compact .top,
+  .compact .foot {
+    padding-inline: var(--gut);
+  }
+}
+
+.hero-s {
+  padding-block: var(--s4) var(--s3);
+}
+.hero-s h1 {
+  margin: var(--s1) 0 var(--s1);
+  font-weight: 300;
+  font-size: clamp(2rem, 1.4rem + 2.6vw, 3.4rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.hero-s p {
+  margin: 0;
+}
+.hero-s .lede {
+  color: var(--mute);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+.doc h2 {
+  margin: var(--s4) 0 var(--s1);
+  font-weight: 300;
+  font-size: var(--t-lg);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  scroll-margin-top: calc(var(--top-h) + var(--s2));
+}
+.doc p,
+.doc li {
+  max-width: 62ch;
+  line-height: 1.75;
+  color: var(--read);
+}
+.doc ul {
+  padding-left: 1.2em;
+}
+.doc a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--s2);
+  margin-top: var(--s2);
+}
+
+.ascii {
+  margin: 0;
+  width: 46ch;
+  max-width: 100%;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  line-height: 1.05;
+  white-space: pre;
+  color: var(--lazuli);
+  opacity: 0.95;
+  user-select: none;
+  cursor: pointer;
+  overflow: hidden;
+}
+.nf {
+  padding-block: var(--s4) var(--s5);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--s2);
+}
+.nf .row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--s3);
+}
+@media (max-width: 480px) {
+  .ascii {
+    font-size: 7px;
+  }
+}
