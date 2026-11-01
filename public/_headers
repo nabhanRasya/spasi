@@ -1,0 +1,22 @@
+# Header untuk berkas statis di Cloudflare Pages. GANTI https://api.spasi.id dengan alamat API Anda.
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-1nFnEVJX+NyRLWKGfOReOh9TYCnNah/nzk6vWt1LHGk='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://api.spasi.id; font-src 'self' https://fonts.gstatic.com data:; connect-src 'self' https://api.spasi.id; frame-ancestors 'none'; base-uri 'self'
+
+# halaman privat: jangan diindeks (melengkapi useNoIndex di klien)
+/akun
+  X-Robots-Tag: noindex, nofollow
+/tulis
+  X-Robots-Tag: noindex, nofollow
+/masuk
+  X-Robots-Tag: noindex, nofollow
+/daftar
+  X-Robots-Tag: noindex, nofollow
+/tersimpan
+  X-Robots-Tag: noindex, nofollow
+
+# berkas ber-hash dari Vite: cache panjang
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

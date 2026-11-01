@@ -84,3 +84,5 @@ Bawaan: data di `localStorage` (tanpa server). Untuk akun, tulisan, suka, dan ta
 `src/lib/services/store/index.js` meneruskan ke `local.js` (localStorage) atau, saat variabel itu diset, ke `remote/` (PocketBase);
 bentuk API keduanya sama, sehingga halaman hampir tidak berubah. Pada versi server, `posts.publish` dan `auth.remove` asinkron,
 dan `boot()` memuat sesi + daftar tulisan sebelum aplikasi digambar.
+
+Deploy ke Cloudflare Pages (frontend) + server API terpisah: lihat `docs/DEPLOY-CLOUDFLARE.md`.

@@ -1,0 +1,11 @@
+# Server API saja (frontend di Cloudflare Pages). Satu domain khusus API, mis. api.spasi.id → 127.0.0.1:8090.
+api.spasi.id {
+	encode zstd gzip
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options "nosniff"
+	}
+	# Panel admin: batasi ke IP Anda SETELAH halaman /verifikasi di aplikasi tersedia.
+	# Sampai saat itu tautan verifikasi email bawaan PocketBase memakai /_/ dan harus tetap terbuka.
+	reverse_proxy 127.0.0.1:8090
+}
